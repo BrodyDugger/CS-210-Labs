@@ -1,5 +1,5 @@
 interface Message {
-    MakeHeader();
-    MakeContents();
-    MakeSignature();
+    void MakeHeader();
+    void MakeContents();
+    void MakeSignature();
 }
