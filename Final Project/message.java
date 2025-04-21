@@ -1,4 +1,4 @@
-Interface Message {
+interface Message {
     MakeHeader();
     MakeContents();
     MakeSignature();
