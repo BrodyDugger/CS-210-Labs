@@ -1,5 +1,5 @@
-interface Receiver {
-    void DraftEmail();
+public interface Receiver {
+    void DraftEmail(String header, String content, String signature);
     void ShowEmail();
-    void UpdateConnect();
+    void UpdateConnect(Message message);
 }

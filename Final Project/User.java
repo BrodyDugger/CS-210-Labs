@@ -1,64 +1,34 @@
 import java.util.ArrayList;
 
-/**
- * Object that represents users of the messaging system.
- */
-public class User
-{
-    // instance variables
-    private int UserID;
-    private ArrayList<Message> Inbox;
+public class User implements Receiver {
+    int UserID;
+    ArrayList<Message> Inbox = new ArrayList<>();
+    String authorName;
 
-    /**
-     * Constructor for objects of class User
-     */
-    public User(int UID)
-    {
-        // initialise instance variables
-        this.UserID = UID;
-        this.Inbox = new ArrayList<Message>();
+    public User(int id, String name) {
+        this.UserID = id;
+        this.authorName = name;
     }
-    
-    public void UpdateConnect(){
-        // interfaces with the Manager class to change whether or not this user is connected.
-        System.out.println("Placeholder");
+
+    @Override
+    public void DraftEmail(String header, String content, String signature) throws ClassCastException {
+        Email email = new Email(header, content, signature, authorName);
+        Inbox.add(email);
     }
-    
-    public void ShowMessage(int Order){
-        // Shows the nth email in the user's inbox.
-        if (Order < Inbox.size() && Order > 0){
-            Message CurrentMessage = Inbox.get(Order);
-            System.out.println("placeholder");
-        }
-        else{
-            System.out.println("Order out of bounds - could not find message in inbox of the given order" );
+
+    @Override
+    public void ShowEmail() {
+        for (Message msg : Inbox) {
+            System.out.println("Header: ", msg.MakeHeader());
+            System.out.println("Content: ", msg.MakeContents());
+            System.out.println("Signature: ", msg.MakeSignature());
+            System.out.println("-----------");
         }
     }
-    
-    public void DeleteMessage(int Order){
-        // Deletes the nth email in the user's inbox.
-        if (Order < Inbox.size() && Order > 0){
-        // Check to make sure the Order parameter is greater than zero and less than the size of the Inbox.
-            Message CurrentMessage = Inbox.remove(Order);
-            System.out.println("Deleted message");
-        }
-        else{
-            System.out.println("Order out of bounds - could not find message in inbox of the given order" );
-        }
+
+    @Override
+    public void UpdateConnect(Message message) {
+        Inbox.add(message);
     }
-    
-    public void DraftMessage(int RecipientID, String MessageType){
-        // Creates and sends a message of the given type of the user with the given ID.
-        switch (MessageType.toLowerCase()){
-        // Proceed by cases based on which type of message the user specifies.
-            case "email":
-                System.out.print("placeholder");
-            break;
-            
-            default:
-                System.out.print("email type unrecognized");
-            
-        }
-        }
-        
-    }
+
+}

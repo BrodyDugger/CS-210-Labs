@@ -1,42 +1,29 @@
-import java.util.Scanner; 
+public class Email implements Message {
+    String Header;
+    String Contents;
+    String Signature;
+    String Author;
 
-
-class Email implements Message{
-    private String Header, Contents, Signature, Author;
-
-    public Email (String Header, String Contents,
-    String Signature, String Author){
-        this.Header = Header;
-        this.Contents = Contents;
-        this.Signature = Contents;
-        this.Author = Contents;
+    public Email(String header, String contents, String signature, String author) throws ClassCastException {
+        this.Header = header;
+        this.Contents = contents;
+        this.Signature = signature;
+        this.Author = author;
     }
 
     @Override
-    public void MakeHeader(){
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Enter New Header");
-
-        String Header = myObj.nextLine();
-        System.out.println("Header now is:" + Header);
+    public String MakeHeader() {
+        return Header;
     }
 
     @Override
-    public void MakeContents(){
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Enter New Contents");
-
-        String Contents = myObj.nextLine();
-        System.out.println("Contents are now:" + Contents);
+    public String MakeContents() {
+        return Contents;
     }
 
     @Override
-    public void MakeSignature(){
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Enter New Signature");
-
-        String Signature = myObj.nextLine();
-        System.out.println("Signature is now:" + Signature);
+    public String MakeSignature() {
+        return Signature + "\nFrom: " + Author;
     }
 
 }

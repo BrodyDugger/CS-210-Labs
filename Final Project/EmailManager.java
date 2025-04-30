@@ -1,32 +1,34 @@
 import java.util.ArrayList;
 
-public class EmailManager extends User{
-    private ArrayList Receiver;
-    private ArrayList connectedUsers; 
+public class EmailManager {
+    ArrayList<User> ConnectedUsers = new ArrayList<>();
 
-    public void AddUsers(String UserID) {
-        if (connectedUsers.contains(UserID)) {
-            System.out.println("User" + UserID + "already exists");
+
+    public void AddUsers(User user) {
+        if (ConnectedUsers.contains(user)){
+            System.out.println(user + " already exists");
         } else {
-            connectedUsers.add(UserID);
-            System.out.println("Added" + UserID);
+            ConnectedUsers.add(user);
+            System.out.println(user + " added");
+        }
+
+    }
+
+    public void RemoveUser(User user) {
+        if (ConnectedUsers.contains(user) == false){
+            System.out.println(user + " does not exist");
+        } else {
+            ConnectedUsers.remove(user);
+            System.out.println(user + " removed");
         }
     }
 
-    public void RemoveUser(String UserID) {
-        if (connectedUsers.contains(UserID)) {
-            connectedUsers.remove(UserID);
-            System.out.println("User" + UserID + "removed");
-        } else {
-            System.out.println("User" + UserID + "not found");
-        }
+    public void SendEmail(User sender, User receiver, String header, String content, String signature) throws ClassCastException {
+        Email email = new Email(header, content, signature, sender.authorName);
+        receiver.UpdateConnect(email);
     }
 
-    public void SendEmail(){
-        //TODO: Make method
-    }
-
-    public void GetUsers(){
-        System.out.println(new ArrayList<>(connectedUsers));
+    public ArrayList<User> GetUsers() {
+        return ConnectedUsers;
     }
 }
