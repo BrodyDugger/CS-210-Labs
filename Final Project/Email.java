@@ -12,17 +12,17 @@ public class Email implements Message {
     }
 
     @Override
-    public String MakeHeader() {
+    public String MakeHeader() { //Method doesn't have a problem with String header in VSCode
         return Header;
     }
 
     @Override
-    public String MakeContents() {
+    public String MakeContents() { //Method doesn't have a problem with String header in VSCode
         return Contents;
     }
 
     @Override
-    public String MakeSignature() {
+    public String MakeSignature() { //Method doesn't have a problem with String header in VSCode
         return Signature + "\nFrom: " + Author;
     }
 
