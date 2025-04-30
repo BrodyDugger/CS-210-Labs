@@ -24,8 +24,12 @@ public class EmailManager {
     }
 
     public void SendEmail(User sender, User receiver, String header, String content, String signature) throws ClassCastException {
-        Email email = new Email(header, content, signature, sender.authorName);
-        receiver.UpdateConnect(email);
+        if (ConnectedUsers.contains(sender) && ConnectedUsers.contains(receiver)) {
+            Email email = new Email(header, content, signature, sender.authorName);
+            receiver.UpdateConnect(email);
+        } else {
+            System.out.println(sender + " or " + receiver + " doesn't exist");
+        }
     }
 
     public ArrayList<User> GetUsers() {
