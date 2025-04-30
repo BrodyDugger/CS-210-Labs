@@ -18,11 +18,15 @@ public class User implements Receiver {
 
     @Override
     public void ShowEmail() {
-        for (Message msg : Inbox) {
-            System.out.println("Header: ", msg.MakeHeader());
-            System.out.println("Content: ", msg.MakeContents());
-            System.out.println("Signature: ", msg.MakeSignature());
-            System.out.println("-----------");
+        if (Inbox.isEmpty()) {
+            System.out.println("Inbox is Empty");
+        } else {
+            for (Message msg : Inbox) {
+                System.out.println("Header: ", msg.MakeHeader());
+                System.out.println("Content: ", msg.MakeContents());
+                System.out.println("Signature: ", msg.MakeSignature());
+                System.out.println("-----------");
+            }
         }
     }
 
