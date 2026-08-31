@@ -14,6 +14,9 @@ public class Main {
         bob.DraftEmail("Re: Meeting Update", "Thanks for the update!", "Best, Bob");
         manager.SendEmail(bob, alice, "Re: Meeting Update", "Thanks for the update!", "Best, Bob");
 
+        alice.DraftEmail("Re: Meeting Update", "You're welcome!", "Regards, Alice");
+        manager.SendEmail(alice, bob, "Re: Meeting Update", "You're welcome!", "Regards, Alice");
+
         System.out.println("Bob's Inbox:");
         bob.ShowEmail();
 
