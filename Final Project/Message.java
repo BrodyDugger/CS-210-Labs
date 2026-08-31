@@ -1,5 +1,5 @@
 public interface Message {
-    void MakeHeader();
-    void MakeContents();
-    void MakeSignature();
+    String MakeHeader();
+    String MakeContents();
+    String MakeSignature();
 }
