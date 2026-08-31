@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class User implements Receiver {
     int UserID;
     ArrayList<Message> Inbox = new ArrayList<>();
+    ArrayList<Message> Drafts = new ArrayList<>();
     String authorName;
 
     public User(int id, String name) {
@@ -13,7 +14,7 @@ public class User implements Receiver {
     @Override
     public void DraftEmail(String header, String content, String signature) throws ClassCastException {
         Email email = new Email(header, content, signature, authorName);
-        Inbox.add(email);
+        Drafts.add(email);
     }
 
     @Override
@@ -22,9 +23,9 @@ public class User implements Receiver {
             System.out.println("Inbox is Empty");
         } else {
             for (Message msg : Inbox) {
-                System.out.println("Header: ", msg.MakeHeader());
-                System.out.println("Content: ", msg.MakeContents());
-                System.out.println("Signature: ", msg.MakeSignature());
+                System.out.println("Header: " + msg.MakeHeader());
+                System.out.println("Content: " + msg.MakeContents());
+                System.out.println("Signature: " + msg.MakeSignature());
                 System.out.println("-----------");
             }
         }
